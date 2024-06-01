@@ -1,0 +1,43 @@
+### Create a new user
+POST http://localhost:3000/auth/signup
+content-type: application/json
+
+{
+   "email" : "test36@test.com",
+   "password": "12345"
+}
+
+### Sign in as exsit user
+POST http://localhost:3000/auth/signin
+content-type: application/json
+
+{
+   "email" : "test36@test.com",
+   "password": "12345"
+}
+
+### Get a current user with a session
+GET  http://localhost:3000/auth/whoiam
+
+### Signout a current user with a session
+POST http://localhost:3000/auth/signout
+
+
+### Get a user with a given Id
+GET  http://localhost:3000/auth/3
+
+### Get All users
+GET  http://localhost:3000/auth?email=asdf@asdf.com
+
+### Delete a User given id
+DELETE http://localhost:3000/auth/3
+
+### Update User given id
+PATCH  http://localhost:3000/auth/3
+content-type: application/json
+
+{
+  "password": "ugykuk"
+}
+
+

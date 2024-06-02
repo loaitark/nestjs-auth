@@ -3,23 +3,23 @@ import {
   Controller,
   Post,
   Get,
-  Param,
   Patch,
-  Query,
   Delete,
+  Param,
+  Query,
   NotFoundException,
   Session,
   UseGuards,
 } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
-import { Serialize } from 'src/interceptors/serialize.intercepror';
-import { UserDto } from './dtos/user.dto';
 import { UsersService } from './users.service';
-import { AuthService } from './auth.servicce';
-import { CurrentUser } from './decorators/current-user.decorator';
+import { Serialize } from '../interceptors/serialize.intercepror';
+import { UserDto } from './dtos/user.dto';
+import { AuthService } from './auth.service';
 import { User } from './user.entity';
-import { AuthGuard } from 'src/guards/auth.guard';
+import { AuthGuard } from '../guards/auth.guard';
+import { CurrentUser } from './decorators/current-user.decorator';
 
 @Controller('auth')
 @Serialize(UserDto)
@@ -53,8 +53,8 @@ export class UsersController {
     return user;
   }
   @Get('/:id')
-  findUser(@Param('id') id: string) {
-    const user = this.userService.findOne(parseInt(id));
+  async findUser(@Param('id') id: string) {
+    const user = await this.userService.findOne(parseInt(id));
     if (!user) {
       throw new NotFoundException('user not found');
     }

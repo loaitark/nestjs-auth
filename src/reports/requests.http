@@ -1,3 +1,4 @@
+# Approved an existing repot
 POST http://localhost:3000/reports
 Content-Type: application/json
 
@@ -10,3 +11,11 @@ Content-Type: application/json
     "lng": 153,
     "lat": 45
 }
+
+
+# ## Approved an existing repot
+# PATCH  http://localhost:3000/reports/6
+# Content-Type: application/json
+# {
+#     "approved": true
+# }
